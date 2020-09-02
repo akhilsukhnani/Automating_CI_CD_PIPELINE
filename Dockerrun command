@@ -1,0 +1,1 @@
+docker run -it --name <name of the container> -v <path of the directory you have to mount>:/root/.jenkins/ -p <port you want to PAT at>:8080 -e USER=<username of the system to which you will be doing ssh from the container> -e DEST_IP=<ip of the system to which you will be doing ssh from the container> <image_name:version>
