@@ -1,0 +1,8 @@
+ssh root@10.148.0.2 '
+running=$(sudo docker ps | grep phpserver | wc -l)
+all=$(sudo docker ps -a | grep phpserver | wc -l)
+if [[ $running==0 && $all==1 ]]
+then 
+sudo docker start phpserver
+fi
+'
