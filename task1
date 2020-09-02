@@ -1,0 +1,11 @@
+ssh root@<ip_of_the_VM> '
+path="/root/mounted_directory/workspace/task2_job1/"
+files=$(sudo ls $path | grep -e php -e html | wc -l)
+if [[ $files > 0 ]]
+then
+sudo cp  -rvf $path* /root/final
+else
+echo "No php or HTML files received"
+exit 1
+fi
+'
