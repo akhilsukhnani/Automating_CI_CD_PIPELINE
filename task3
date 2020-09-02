@@ -1,0 +1,10 @@
+ssh root@10.148.0.2  '
+website_status=$(sudo curl -o /dev/null -s -w "%{http_code}" http://35.240.141.3:8600/ )
+if [[ $website_status == 200 ]]
+then
+echo "Website is UP and  running fine"
+else
+echo "Something went wrong"
+exit 1
+fi
+'
