@@ -1,0 +1,8 @@
+status=$(curl -s  http://admin:redhat@35.240.141.3:8082/job/task2_job3/lastBuild/api/xml | grep SUCCESS | wc -l)
+if [[ $status == 1 ]]
+then
+echo "App running successfully"
+else
+echo "App not working properly, Email sent to Developer"
+exit 0
+fi
