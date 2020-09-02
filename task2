@@ -1,0 +1,20 @@
+ssh root@10.148.0.2 '
+html_code=$(sudo ls /root/final/ | grep html | wc -l)
+php_code=$(sudo ls /root/final/ | grep php | wc -l)
+if sudo docker ps -a | grep -e phpserver -e httpdsever
+then
+sudo docker rm -f phpserver httpdserver
+else
+echo "GO ahead"
+fi
+if [[ $html_code > 0 && $php_code > 0 ]]
+then
+sudo docker run -dit -v /root/final/:/var/www/html --name phpserver -p 8600:80 vimal13/apache-webserver-php
+elif [[ $php_code> 0 ]]
+then
+sudo docker run -dit -v /root/final/:/var/www/html --name phpserver -p 8600:80 vimal13/apache-webserver-php
+elif [[ $php_code> 0 ]]
+then
+sudo docker run -dit -v /root/final/:/usr/local/apache2/htdocs --name httpdserver -p 8601:80 httpd
+fi
+'
